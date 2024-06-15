@@ -2,8 +2,8 @@ import re
 
 import numpy as np
 
-from quakeio.core import QuakeSeries
-from quakeio.utils.parseutils import open_quake
+from evnt.core import QuakeSeries
+from evnt.utils.parseutils import open_quake
 
 RE_TIME_STEP = re.compile(r"DT=\s+(.*)SEC")
 

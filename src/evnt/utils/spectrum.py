@@ -6,7 +6,7 @@ except:
 import numpy as np
 from numpy import pi
 import matplotlib.pyplot as plt
-from quakeio.core import QuakeComponent, QuakeSeries
+from evnt.core import QuakeComponent, QuakeSeries
 
 def _plot_func(plot):
     plt.style.use("berkeley")

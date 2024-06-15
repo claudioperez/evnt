@@ -1,5 +1,5 @@
-from quakeio.core import QuakeSeries, QuakeComponent, QuakeCollection
-from quakeio.utils.parseutils import open_quake
+from evnt.core import QuakeSeries, QuakeComponent, QuakeCollection
+from evnt.utils.parseutils import open_quake
 import numpy
 
 

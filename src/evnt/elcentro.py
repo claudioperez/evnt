@@ -1,5 +1,5 @@
-import quakeio.core
-accel = quakeio.core.QuakeSeries([
+import evnt.core
+accel = evnt.core.QuakeSeries([
   -0.00640318,
   -0.00602871,
   0.00053042,

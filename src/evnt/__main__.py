@@ -2,17 +2,17 @@
 # Command line interface for QuakeIO tool
 import argparse
 import sys
-import quakeio
+import evnt
 
 
 def build_parser():
     # fmt: off
     parser = argparse.ArgumentParser(
-        prog="quakeio",
+        prog="evnt",
         description="""Parsers and utilities for processing and converting accelerograms.
 
         """,
-        usage="quakeio [MODE] [OPTIONS] FILE"
+        usage="evnt [MODE] [OPTIONS] FILE"
     )
     modes = parser.add_argument_group("Modes")
     modes.add_argument("-A", "--all", dest="mode_process", action="store_true",
@@ -34,7 +34,7 @@ def build_parser():
         dest="input_format",
         metavar="FORMAT",
         help="Specify input file format",
-        choices=list(quakeio.FILE_TYPES.keys()),
+        choices=list(evnt.FILE_TYPES.keys()),
     )
     parser.add_argument(
         "-t", "--to",
@@ -87,13 +87,13 @@ def build_parser():
     # parser.add_argument("-s", "--scale", help="Scale ground motions by factor FACTOR")
 
     parser.add_argument(
-        "--version", help="Print version and exit.", action="version", version=quakeio.__version__
+        "--version", help="Print version and exit.", action="version", version=evnt.__version__
     )
     formats = parser.add_argument_group("Formats",
         description=f"""
         yaml, json, csmip, opensees
         """
-        # {', '.join(quakeio.FILE_TYPES.keys())}
+        # {', '.join(evnt.FILE_TYPES.keys())}
     )
     # fmt: on
     return parser
@@ -109,7 +109,7 @@ def cli(*args, write_file="-", human=False, validate=False, version=False, comma
     else:
         query = None
 
-    motion = quakeio.read(read_file, **kwds)
+    motion = evnt.read(read_file, **kwds)
 
     if kwds["match_patterns"]:
         kvs = {}
@@ -131,13 +131,13 @@ def cli(*args, write_file="-", human=False, validate=False, version=False, comma
         run_validation(motion)
 
     if human:
-        motion = quakeio.core.write_pretty(motion)
+        motion = evnt.core.write_pretty(motion)
 
     if "angle" in kwds and kwds["angle"]:
-        quakeio.core.rotate(motion, float(kwds["angle"]))
+        evnt.core.rotate(motion, float(kwds["angle"]))
 
 
-    quakeio.write(write_file, motion, **kwds)
+    evnt.write(write_file, motion, **kwds)
     print("\n")
 
 def run_validation(collection):

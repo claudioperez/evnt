@@ -8,9 +8,9 @@ from collections import defaultdict
 
 import numpy as np
 
-from quakeio.utils.parseutils import open_quake
+from evnt.utils.parseutils import open_quake
 
-from quakeio.core import (
+from evnt.core import (
      QuakeCollection,
      QuakeMotion,
      QuakeComponent,

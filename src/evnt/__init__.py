@@ -45,8 +45,8 @@ def read(read_file, input_format=None, **kwds):
     Generic ground motion reader
     """
     if "parser" in kwds and kwds["parser"] is not None:
-        import quakeio
-        return _find_function(quakeio, "parse."+kwds["parser"])(read_file, **kwds)
+        import evnt
+        return _find_function(evnt, "parse."+kwds["parser"])(read_file, **kwds)
 
     input_format = input_format or kwds.pop("format",None)
     if input_format is not None:

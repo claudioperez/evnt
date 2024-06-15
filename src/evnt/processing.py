@@ -2,7 +2,7 @@
 from pathlib import Path
 import numpy as np
 from numpy import pi
-from quakeio.core import QuakeComponent, QuakeSeries
+from evnt.core import QuakeComponent, QuakeSeries
 
 try:
     import jax.numpy as jnp
