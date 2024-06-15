@@ -1,4 +1,4 @@
-# quake-io
+# `evnt`
 
 [![PyPI Downloads][pypi-v-image]][pypi-v-link]
 [![PyPI Version][pypi-d-image]][pypi-d-link]
@@ -17,7 +17,7 @@ QuakeIO is a library of utilities for parsing ground motion files. Interfaces ar
 
 | Format          | Read      | Write   |  Reference              |
 |-----------------|-----------|---------|-------------------------|
-|`[quakeio.]json` | &#9745;   | &#9745; | [schema][record-schema] |
+|`[evnt.]json` | &#9745;   | &#9745; | [schema][record-schema] |
 |`csmip`          | &#9744;   | &#9744; |                         |
 |`csmip.v2`       | &#9745;   | &#9744; | [CSMIP][CSMIP]          |
 |`eqsig`          | &#9745;   | &#9745; | [eqsig][EQSIG]          |
@@ -33,7 +33,7 @@ QuakeIO is a library of utilities for parsing ground motion files. Interfaces ar
 Run the following command:
 
 ```shell
-pip install quakeio
+pip install evnt
 ```
 
 
@@ -41,17 +41,17 @@ pip install quakeio
 <!-- Reference links -->
 [EQSIG]: https://github.com/eng-tools/eqsig
 [CSMIP]: https://www.conservation.ca.gov/cgs/Documents/Program-SMIP/Reports/Other/OSMS_85-03.pdf
-[record-schema]: https://raw.githubusercontent.com/claudioperez/quakeio/master/etc/schemas/record.schema.json
+[record-schema]: https://raw.githubusercontent.com/claudioperez/evnt/master/etc/schemas/record.schema.json
 
 <!-- Badge links -->
-[pypi-d-image]: https://img.shields.io/pypi/dm/quakeio.svg
-[license-badge]: https://img.shields.io/pypi/l/quakeio.svg
-[pypi-d-link]: https://pypi.org/project/quakeio
-[pypi-v-image]: https://img.shields.io/pypi/v/quakeio.svg
-[pypi-v-link]: https://pypi.org/project/quakeio
-[build-img]: https://github.com/claudioperez/quakeio/actions/workflows/base.yml/badge.svg
-[cov-img]: https://raw.githubusercontent.com/claudioperez/quakeio/master/etc/coverage/cov.svg
-[gh-link]: https://github.com/claudioperez/quakeio/compare/v0.1.14...master
-[gh-image]: https://img.shields.io/github/commits-since/claudioperez/quakeio/v0.1.14?style=social
+[pypi-d-image]: https://img.shields.io/pypi/dm/evnt.svg
+[license-badge]: https://img.shields.io/pypi/l/evnt.svg
+[pypi-d-link]: https://pypi.org/project/evnt
+[pypi-v-image]: https://img.shields.io/pypi/v/evnt.svg
+[pypi-v-link]: https://pypi.org/project/evnt
+[build-img]: https://github.com/claudioperez/evnt/actions/workflows/base.yml/badge.svg
+[cov-img]: https://raw.githubusercontent.com/claudioperez/evnt/master/etc/coverage/cov.svg
+[gh-link]: https://github.com/claudioperez/evnt/compare/v0.1.14...master
+[gh-image]: https://img.shields.io/github/commits-since/claudioperez/evnt/v0.1.14?style=social
 
 

@@ -1,7 +1,7 @@
 import numpy as np
 
-from quakeio.core import QuakeSeries, QuakeComponent
-from quakeio.utils.parseutils import open_quake
+from evnt.core import QuakeSeries, QuakeComponent
+from evnt.utils.parseutils import open_quake
 
 
 def read(read_file, **kwds):

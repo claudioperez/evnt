@@ -1,10 +1,14 @@
 import sys
 import quakeio
-from quakeio.smc import read_event
+from quakeio.parse.smc import read_event
 
-#event = read_event(sys.argv[1], verbosity=3)
 
-event = quakeio.read(sys.argv[1], parser="smc.read_event")
+filename = "dat/LomaPrieta_17Oct1989_NP01103P.smc.zip"
+
+if len(sys.argv) > 1:
+    filename = sys.argv[1]
+
+event = quakeio.read(filename, parser="smc.read_event")
 
 print(event)
 

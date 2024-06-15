@@ -2,8 +2,8 @@ import json
 from copy import copy
 from pathlib import Path
 
-from quakeio.core import QuakeComponent, QuakeCollection
-from quakeio.utils.parseutils import open_quake
+from evnt.core import QuakeComponent, QuakeCollection
+from evnt.utils.parseutils import open_quake
 
 
 class Unused:
