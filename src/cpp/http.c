@@ -33,7 +33,7 @@
   typedef socklen_t socklen_type;
 #endif
 
-int startup_sockets(void)
+int startup_sockets()
 {
 #ifdef _WIN32  
   WSADATA wsaData;

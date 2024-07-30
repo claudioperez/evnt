@@ -4,15 +4,6 @@
 **                                                                    **
 ** ****************************************************************** */
 //
-#ifndef PeerMotion_h
-#define PeerMotion_h
-
-
-#include <iostream>
-#ifndef OPS_Stream
-#  define OPS_Stream std::ostream
-#endif
-//
 // Description: This file contains the class definition for PeerMotion.
 // PeerMotion is a TimeSeries class which obtains the reference points from
 // the Peer Strong Motion Database, interpolates the load factor using 
@@ -24,6 +15,13 @@
 // Written: fmk 
 // Created: 10/06
 //
+#ifndef PeerMotion_h
+#define PeerMotion_h
+//
+#include <iostream>
+#ifndef OPS_Stream
+#  define OPS_Stream std::ostream
+#endif
 
 class Vector;
 

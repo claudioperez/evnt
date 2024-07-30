@@ -6,7 +6,7 @@
 <!-- ![Build][build-img] -->
 [![Commits since latest release][gh-image]][gh-link]
 
-QuakeIO is a library of utilities for parsing ground motion files. Interfaces are provided for Python, Matlab, and the command line.
+`evnt` is a library of utilities for parsing ground motion files. Interfaces are provided for Python, Matlab, and the command line.
 
 - [Install](#install)
 - [Formats](#formats)
