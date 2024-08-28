@@ -1,0 +1,7 @@
+opensees
+sees
+shps
+mdof
+numpy
+matplotlib
+pandas
