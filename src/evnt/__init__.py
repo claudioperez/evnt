@@ -1,5 +1,5 @@
 # Claudio Perez
-__version__ = "0.0.0"; # "0.1.19"
+__version__ = "0.0.1"; # "0.1.19"
 
 import importlib
 from pathlib import Path
