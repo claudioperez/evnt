@@ -83,6 +83,7 @@ def read_series(
     verbosity: int  = 0,
     summarize: bool =False,
     exclusions: tuple = (),
+    return_motion=False,
     **kwds
 ) -> QuakeSeries:
 
@@ -96,6 +97,14 @@ def read_series(
             if "<loclbl" in line:
                 location = line[12:line.find("<end>")]
                 break
+        
+        series = QuakeSeries(data, meta={"type": txt_header[0].decode(),
+                                       "ihdr": int_header,
+                                       "rhdr": real_header,
+                                       "time_step": time_step})
+
+        if not return_motion:
+            return series
 
         motion_data = {
             "component":       int(int_header[12]),
@@ -105,10 +114,7 @@ def read_series(
             "time_step":       time_step
         }
 
-        return QuakeSeries(data, meta={"type": txt_header[0].decode(),
-                                       "ihdr": int_header,
-                                       "rhdr": real_header,
-                                       "time_step": time_step}), motion_data
+        return series, motion_data
 
 
 
@@ -116,8 +122,8 @@ def read_event(read_file, verbosity=0, summarize=False, **kwds)->QuakeCollection
     """
     """
 
-    zippath    = Path(read_file)
-    archive    = zipfile.ZipFile(zippath)
+    zippath   = Path(read_file)
+    archive   = zipfile.ZipFile(zippath)
     file_data = defaultdict(lambda : defaultdict(dict))
 
 
@@ -133,7 +139,9 @@ def read_event(read_file, verbosity=0, summarize=False, **kwds)->QuakeCollection
             print(f"\t\t{file}", file=sys.stderr)
 
         series, motion_data = read_series(file, archive, verbosity=verbosity,
-                                          summarize=summarize, **kwds)
+                                          summarize=summarize,
+                                          return_motion=True,
+                                          **kwds)
         
         if verbosity > 2:
             print(f"\t{motion_data['location_name']}")

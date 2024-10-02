@@ -3,6 +3,7 @@ __version__ = "0.0.1"; # "0.1.19"
 
 import importlib
 from pathlib import Path
+import zipfile
 from functools import reduce
 
 from .parse import csmip, nga, eqsig, basic_formats, opensees, smc
@@ -38,7 +39,7 @@ DEFAULT_PARSERS = {
 }
 
 def detect(event):
-    with ZipFile(event, "r") as readfile:
+    with zipfile.ZipFile(event, "r") as readfile:
         if any('.smc' in name for name in readfile.namelist()):
             parser = 'smc.read_event'
         else:
@@ -57,10 +58,14 @@ def _find_function(module, name):
     return func
 
 
-def read_zip(read_file):
+def try_zip(read_file):
     import zipfile
-    for name zipfile.ZipFile(read_file).namelist():
-        yield read(name, archive=archive)
+    archive = zipfile.ZipFile(read_file)
+    for name in archive.namelist():
+        try:
+            yield read(name, archive=archive)
+        except:
+            pass
 
 
 def read(read_file, input_format=None, group=None, **kwds):
@@ -82,7 +87,7 @@ def read(read_file, input_format=None, group=None, **kwds):
         try:
             typ = DEFAULT_TYPES[Path(read_file).suffix.lower()]
         except KeyError:
-            raise ValueError("Unable to deduce input format.\n")
+            raise ValueError(f"Unable to deduce input format for {read_file}\n")
 
     if typ in FILE_TYPES:
         return FILE_TYPES[typ]["read"](read_file, **kwds)
@@ -101,7 +106,7 @@ def write(write_file, ground_motion, write_format: str = None, *args, **kwds):
         try:
             typ = DEFAULT_TYPES[Path(write_file).suffix.lower()]
         except KeyError:
-            raise ValueError("Unable to deduce output format")
+            raise ValueError(f"Unable to deduce output format for {write_file}")
     FILE_TYPES[typ]["write"](write_file, ground_motion, *args, **kwds)
 
 def dumps(ground_motion, **kwds):
