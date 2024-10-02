@@ -5,8 +5,9 @@ import importlib
 from pathlib import Path
 from functools import reduce
 
-from .parse import csmip, nga, eqsig, basic_formats, opensees
+from .parse import csmip, nga, eqsig, basic_formats, opensees, smc
 
+smc.read_series
 FILE_TYPES = {}
 
 # Avoid repeated dot lookup
@@ -16,18 +17,26 @@ _register_file_type(csmip.FILE_TYPES)
 _register_file_type(eqsig.FILE_TYPES)
 _register_file_type(basic_formats.FILE_TYPES)
 _register_file_type(opensees.FILE_TYPES)
+_register_file_type({
+    "smc": {"read": smc.read_series}
+})
 
 # Map different file extensions to the name
 # of the parser that should be used by default
 # (when format argument is not explicitly passed).
 DEFAULT_TYPES = {
     ".at2":  "nga.at2",
+    ".smc":  "smc",
     ".AT2":  "nga.at2",
     ".zip":  "csmip.zip",
     ".v2":   "csmip.v2",
     ".V2":   "csmip.v2",
     ".json": "json",
 }
+
+DEFAULT_PARSERS = {
+}
+
 
 
 def _find_function(module, name):
@@ -40,13 +49,23 @@ def _find_function(module, name):
     return func
 
 
-def read(read_file, input_format=None, **kwds):
+def read_zip(read_file):
+    import zipfile
+    for name zipfile.ZipFile(read_file).namelist():
+        yield read(name, archive=archive)
+
+
+def read(read_file, input_format=None, group=None, **kwds):
     """
     Generic ground motion reader
     """
+
+    # Use specified parser if provided
     if "parser" in kwds and kwds["parser"] is not None:
         import evnt
         return _find_function(evnt, "parse."+kwds["parser"])(read_file, **kwds)
+
+    # 
 
     input_format = input_format or kwds.pop("format",None)
     if input_format is not None:
