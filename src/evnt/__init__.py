@@ -37,6 +37,14 @@ DEFAULT_TYPES = {
 DEFAULT_PARSERS = {
 }
 
+def detect(event):
+    with ZipFile(event, "r") as readfile:
+        if any('.smc' in name for name in readfile.namelist()):
+            parser = 'smc.read_event'
+        else:
+            parser = None
+    return parser
+
 
 
 def _find_function(module, name):
