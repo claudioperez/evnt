@@ -1,5 +1,6 @@
 opensees
-sees
+veux
+xara
 shps
 mdof
 numpy
